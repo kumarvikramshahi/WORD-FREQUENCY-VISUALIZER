@@ -7,28 +7,29 @@ import Histogram from "../../component/charts/histogram";
 import { TTT_TEXT_API } from "../../constant/constant";
 import Loader from "../../component/UI/Loader";
 
-export default function WordGraph(){
+export default function WordGraph() {
     const [graphLabels, setGraphLabels] = useState(null);
-    const [graphData, setGraphData]=useState(null);
+    const [graphData, setGraphData] = useState(null);
     const [errMessage, setErrMessage] = useState("");
     const [isLoading, setLoading] = useState(false);
 
     const fetchMessage = async (e) => {
-        try{
+        try {
             setLoading(true)
+            setErrMessage("")
             const response = await fetch(TTT_TEXT_API)
             const respText = await response.text()
             const wordRank = WordRanking(respText);
-            let labels=[]
+            let labels = []
             let dataSet = []
-            for(let i=1;i<=20;i++){
+            for (let i = 1; i <= 20; i++) {
                 labels.push(wordRank[i][0])
                 dataSet.push(wordRank[i][1])
             }
             setGraphLabels(labels);
             setGraphData(dataSet);
             setLoading(false)
-        } catch(err){
+        } catch (err) {
             console.log(err.message);
             setErrMessage(err.message)
             setLoading(false)
@@ -39,7 +40,7 @@ export default function WordGraph(){
         <div>
             {/* loader */}
             {isLoading ? <Loader /> : null}
-         
+
             {/* error Pop message */}
             {errMessage.length ? <PopMessage message={errMessage} /> : null}
 
@@ -54,7 +55,7 @@ export default function WordGraph(){
                 </div>
             ) : null}
 
-            {/* Submit button on initial load */} 
+            {/* Submit button on initial load */}
             <div className="submitBtn">
                 <Button value={!graphData ? "Submit" : "Submit again"} type="submit" onClick={(e) => fetchMessage(e)} />
             </div>

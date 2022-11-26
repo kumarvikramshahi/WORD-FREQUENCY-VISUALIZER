@@ -3,7 +3,7 @@ import "./popupMessage.css"
 
 export default function PopMessage({message}) {
     return (
-        <div>
+        <div className="popMessage">
             {message}
         </div>
     )

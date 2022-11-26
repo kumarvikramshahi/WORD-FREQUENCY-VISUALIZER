@@ -1,4 +1,3 @@
-import './App.css';
 import WordGraph from './pages/WordGraph';
 import Header from './component/header';
 
