@@ -13,12 +13,16 @@ export default function WordGraph() {
     const [errMessage, setErrMessage] = useState("");
     const [isLoading, setLoading] = useState(false);
 
+    // fetching text message
     const fetchMessage = async (e) => {
         try {
             setLoading(true)
             setErrMessage("")
+
             const response = await fetch(TTT_TEXT_API)
             const respText = await response.text()
+
+            // arranging labels and data i.e X & Y co-ords
             const wordRank = WordRanking(respText);
             let labels = []
             let dataSet = []
@@ -28,6 +32,7 @@ export default function WordGraph() {
             }
             setGraphLabels(labels);
             setGraphData(dataSet);
+
             setLoading(false)
         } catch (err) {
             console.log(err.message);

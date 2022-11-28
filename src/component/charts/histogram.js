@@ -8,6 +8,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { CHART_REGULAR_BG_COLOR, CHART_REGULAR_BORDER_COLOR } from '../../constant/constant';
 
 export default function Histogram({ graphTitle, barTitle, labels, data }) {
     ChartJS.register(
@@ -37,8 +38,8 @@ export default function Histogram({ graphTitle, barTitle, labels, data }) {
         datasets: [{
             label: barTitle,
             data: data,
-            backgroundColor: "#a0c5dd",
-            borderColor: "rgb(255, 255, 210)",
+            backgroundColor: CHART_REGULAR_BG_COLOR,
+            borderColor: CHART_REGULAR_BORDER_COLOR,
             borderWidth: 1
         }]
     }
